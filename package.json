@@ -1,28 +1,14 @@
 {
   "devDependencies": {
-<<<<<<< HEAD
-    "@babel/cli": "^7.24.8",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@eslint/js": "^9.7.0",
-=======
     "@eslint/js": "^9.7.0",
     "eslint": "^9.7.0",
->>>>>>> 6c3f76a (hot100的提交)
     "eslint-plugin-vue": "^9.27.0",
     "globals": "^15.8.0",
     "jest": "^29.7.0",
     "typescript-eslint": "^7.16.0"
   },
-<<<<<<< HEAD
-  "scripts": {
-    "test": "jest"
-  }
-}
-=======
   "type": "module",
   "scripts": {
     "test": "jest"
   }
 }
->>>>>>> 6c3f76a (hot100的提交)
