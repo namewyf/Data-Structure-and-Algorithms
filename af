@@ -1,0 +1,598 @@
+[1mdiff --cc .babelrc[m
+[1mindex 2b99366,590f470..0000000[m
+[1m--- a/.babelrc[m
+[1m+++ b/.babelrc[m
+[36m@@@ -1,12 -1,12 +1,26 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +{[m
+[32m +    "presets": [[m
+[32m +        [[m
+[32m +            "@babel/preset-env",[m
+[32m +            {[m
+[32m +                "targets": {[m
+[32m +                    "node": "current"[m
+[32m +                }[m
+[32m +            }[m
+[32m +        ][m
+[32m +    ][m
+[32m++=======[m
+[32m+ {[m
+[32m+     "presets": [[m
+[32m+         [[m
+[32m+             "@babel/preset-env",[m
+[32m+             {[m
+[32m+                 "targets": {[m
+[32m+                     "node": "current"[m
+[32m+                 }[m
+[32m+             }[m
+[32m+         ][m
+[32m+     ][m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  }[m
+[1mdiff --cc code/10.js[m
+[1mindex 68984ba,1bb6c51..0000000[m
+[1m--- a/code/10.js[m
+[1m+++ b/code/10.js[m
+[36m@@@ -1,32 -1,31 +1,65 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +[m
+[32m +var isMatch = function (s, p) {[m
+[32m +    let modeArr = p.match(/([a-z.]\*)|([a-z]+(?=[a-z.]\*)|$)）/g)[m
+[32m +    let cur = 0;[m
+[32m +    console.log(typeof (modeArr));[m
+[32m +    let strLen = s.length[m
+[32m +    for (let i = 0, m; i < modeArr.length; i++) {[m
+[32m +        //对于模式分为三类：.*|a*|defg[m
+[32m +        m = modeArr[i].split('')[m
+[32m +        //如果第二位是'*'说明是有模式的[m
+[32m +        if (m[1] === '*') {[m
+[32m +            if (m[0] === '.') {[m
+[32m +                cur = strLen[m
+[32m +                break[m
+[32m +            } else {[m
+[32m +                while (s[cur] === m[0]) {[m
+[32m +                    cur++[m
+[32m +                }[m
+[32m +            }[m
+[32m +        } else {[m
+[32m +            for (let j = 0; j < m.length; j++) {[m
+[32m +                if (m[j] !== s[cur]) {[m
+[32m +                    return false[m
+[32m +                } else {[m
+[32m +                    cur++[m
+[32m +                }[m
+[32m +            }[m
+[32m +        }[m
+[32m +    }[m
+[32m +    return cur === strLen[m
+[32m +};[m
+[32m++=======[m
+[32m+ [m
+[32m+ var isMatch = function (s, p) {[m
+[32m+     let modeArr = p.match(/([a-z.]\*)|([a-z]+(?=[a-z.]\*)|$)）/g)[m
+[32m+     let cur = 0;[m
+[32m+     let strLen = s.length[m
+[32m+     for (let i = 0, m; i < modeArr.length; i++) {[m
+[32m+         //对于模式分为三类：.*|a*|defg[m
+[32m+         m = modeArr[i].split('')[m
+[32m+         //如果第二位是'*'说明是有模式的[m
+[32m+         if (m[1] === '*') {[m
+[32m+             if (m[0] === '.') {[m
+[32m+                 cur = strLen[m
+[32m+                 break[m
+[32m+             } else {[m
+[32m+                 while (s[cur] === m[0]) {[m
+[32m+                     cur++[m
+[32m+                 }[m
+[32m+             }[m
+[32m+         } else {[m
+[32m+             for (let j = 0; j < m.length; j++) {[m
+[32m+                 if (m[j] !== s[cur]) {[m
+[32m+                     return false[m
+[32m+                 } else {[m
+[32m+                     cur++[m
+[32m+                 }[m
+[32m+             }[m
+[32m+         }[m
+[32m+     }[m
+[32m+     return cur === strLen[m
+[32m+ };[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  export default isMatch[m
+[1mdiff --cc code/17.js[m
+[1mindex 1ef0900,f274005..0000000[m
+[1m--- a/code/17.js[m
+[1m+++ b/code/17.js[m
+[36m@@@ -1,33 -1,33 +1,68 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +function letterCombination(arr) {[m
+[32m +    let result = [][m
+[32m +    if (arr.length > 1) {[m
+[32m +        for (let i = 0; i < arr[0].length; i++) {[m
+[32m +            for (let j = 0; j < arr[1].length; j++) {[m
+[32m +                result.push(`${arr[0][i]}${arr[1][j]}`);[m
+[32m +            }[m
+[32m +        }[m
+[32m +        arr.splice(0, 2, result);[m
+[32m +        return letterCombination(arr);[m
+[32m +    } else {[m
+[32m +        return arr[0];[m
+[32m +    }[m
+[32m +}[m
+[32m +[m
+[32m +export default function (digits) {[m
+[32m +    let list = [[m
+[32m +        ['a', 'b', 'c'],[m
+[32m +        ['d', 'e', 'f'],[m
+[32m +        ['g', 'h', 'i'],[m
+[32m +        ['j', 'k', 'l'],[m
+[32m +        ['m', 'n', 'o'],[m
+[32m +        ['p', 'q', 'r', 's'],[m
+[32m +        ['t', 'u', 'v'],[m
+[32m +        ['w', 'x', 'y', 'z'][m
+[32m +    ];[m
+[32m +[m
+[32m +    let arr = digits.split('').map(Number).map(a => list[a - 2]);[m
+[32m +    if (arr.length === 0) {[m
+[32m +        return [][m
+[32m +    }[m
+[32m +    return letterCombination(arr)[m
+[32m++=======[m
+[32m+ function letterCombination(arr) {[m
+[32m+     let result = [][m
+[32m+     if (arr.length > 1) {[m
+[32m+         for (let i = 0; i < arr[0].length; i++) {[m
+[32m+             for (let j = 0; j < arr[1].length; j++) {[m
+[32m+                 result.push(`${arr[0][i]}${arr[1][j]}`);[m
+[32m+             }[m
+[32m+         }[m
+[32m+         arr.splice(0, 2, result);[m
+[32m+         return letterCombination(arr);[m
+[32m+     } else {[m
+[32m+         return arr[0];[m
+[32m+     }[m
+[32m+ }[m
+[32m+ [m
+[32m+ export default function (digits) {[m
+[32m+     let list = [[m
+[32m+         ['a', 'b', 'c'],[m
+[32m+         ['d', 'e', 'f'],[m
+[32m+         ['g', 'h', 'i'],[m
+[32m+         ['j', 'k', 'l'],[m
+[32m+         ['m', 'n', 'o'],[m
+[32m+         ['p', 'q', 'r', 's'],[m
+[32m+         ['t', 'u', 'v'],[m
+[32m+         ['w', 'x', 'y', 'z'][m
+[32m+     ];[m
+[32m+ [m
+[32m+     let arr = digits.split('').map(Number).map(a => list[a - 2]);[m
+[32m+     if (arr.length === 0) {[m
+[32m+         return [][m
+[32m+     }[m
+[32m+     return letterCombination(arr)[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  }[m
+[1mdiff --cc code/459.js[m
+[1mindex 6ae515d,2b71ab6..0000000[m
+[1m--- a/code/459.js[m
+[1m+++ b/code/459.js[m
+[36m@@@ -1,5 -1,5 +1,12 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +var repeatedSubstringPattern = function (s) {[m
+[32m +    var reg = /^(\w+)\1+$/[m
+[32m +    return reg.test(s)[m
+[32m +};[m
+[32m++=======[m
+[32m+ var repeatedSubstringPattern = function (s) {[m
+[32m+     var reg = /^(\w+)\1+$/[m
+[32m+     return reg.test(s)[m
+[32m+ };[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  export default repeatedSubstringPattern[m
+[1mdiff --cc code/605.js[m
+[1mindex 3518860,cde7186..0000000[m
+[1m--- a/code/605.js[m
+[1m+++ b/code/605.js[m
+[36m@@@ -1,5 -1,5 +1,12 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +var canPlaceFlowers = function (flowerbed, n) {[m
+[32m +[m
+[32m +[m
+[32m +};[m
+[32m++=======[m
+[32m+ var canPlaceFlowers = function (flowerbed, n) {[m
+[32m+ [m
+[32m+ [m
+[32m+ };[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  export default canPlaceFlowers[m
+[1mdiff --cc code/696.js[m
+[1mindex e116951,9d92a10..0000000[m
+[1m--- a/code/696.js[m
+[1m+++ b/code/696.js[m
+[36m@@@ -1,18 -1,18 +1,38 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +export default function (str) {[m
+[32m +    const counts = [];[m
+[32m +    let tmp = 0;[m
+[32m +    let sum = 0;[m
+[32m +    while (tmp < str.length) {[m
+[32m +        const c = str.charAt(tmp);[m
+[32m +        let count = 0;[m
+[32m +        while (str[tmp] === c) {[m
+[32m +            count++;[m
+[32m +            tmp++;[m
+[32m +        }[m
+[32m +        counts.push(count);[m
+[32m +    }[m
+[32m +    for (let i = 1; i < counts.length; i++) {[m
+[32m +        sum += Math.min(counts[i - 1], counts[i])[m
+[32m +    }[m
+[32m +    return sum;[m
+[32m++=======[m
+[32m+ export default function (str) {[m
+[32m+     const counts = [];[m
+[32m+     let tmp = 0;[m
+[32m+     let sum = 0;[m
+[32m+     while (tmp < str.length) {[m
+[32m+         const c = str.charAt(tmp);[m
+[32m+         let count = 0;[m
+[32m+         while (str[tmp] === c) {[m
+[32m+             count++;[m
+[32m+             tmp++;[m
+[32m+         }[m
+[32m+         counts.push(count);[m
+[32m+     }[m
+[32m+     for (let i = 1; i < counts.length; i++) {[m
+[32m+         sum += Math.min(counts[i - 1], counts[i])[m
+[32m+     }[m
+[32m+     return sum;[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  }[m
+[1mdiff --cc code/914.js[m
+[1mindex fb979f2,1d7abfa..0000000[m
+[1m--- a/code/914.js[m
+[1m+++ b/code/914.js[m
+[36m@@@ -1,39 -1,39 +1,80 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +var hasGroupsSizeX = function (deck) {[m
+[32m +[m
+[32m +    let counts = [][m
+[32m +    let tmp[m
+[32m +    let m = 0[m
+[32m +    for (let i = 0; i < deck.length - 1; i++) {[m
+[32m +        for (let j = 0; j < deck.length - i - 1; j++) {[m
+[32m +            if (deck[j] > deck[j + 1]) {[m
+[32m +                tmp = deck[j][m
+[32m +                deck[j] = deck[j + 1][m
+[32m +                deck[j + 1] = tmp[m
+[32m +            }[m
+[32m +        }[m
+[32m +    }[m
+[32m +    while (m < deck.length) {[m
+[32m +        let count = 0;[m
+[32m +        let firstVal = deck[m][m
+[32m +        do {[m
+[32m +            count++[m
+[32m +            m++[m
+[32m +        } while (m < deck.length && firstVal === deck[m])[m
+[32m +        counts.push(count)[m
+[32m +    }[m
+[32m +    if (Math.max(...counts) < 2) {[m
+[32m +        return false[m
+[32m +    } else {[m
+[32m +        for (let x = 2; x <= Math.max(...counts); x++) {[m
+[32m +            let k = 0[m
+[32m +            while (counts[k] % x === 0) {[m
+[32m +                k++[m
+[32m +            }[m
+[32m +            if (k === counts.length) {[m
+[32m +                return true[m
+[32m +            }[m
+[32m +        }[m
+[32m +        return false[m
+[32m +    }[m
+[32m +};[m
+[32m++=======[m
+[32m+ var hasGroupsSizeX = function (deck) {[m
+[32m+ [m
+[32m+     let counts = [][m
+[32m+     let tmp[m
+[32m+     let m = 0[m
+[32m+     for (let i = 0; i < deck.length - 1; i++) {[m
+[32m+         for (let j = 0; j < deck.length - i - 1; j++) {[m
+[32m+             if (deck[j] > deck[j + 1]) {[m
+[32m+                 tmp = deck[j][m
+[32m+                 deck[j] = deck[j + 1][m
+[32m+                 deck[j + 1] = tmp[m
+[32m+             }[m
+[32m+         }[m
+[32m+     }[m
+[32m+     while (m < deck.length) {[m
+[32m+         let count = 0;[m
+[32m+         let firstVal = deck[m][m
+[32m+         do {[m
+[32m+             count++[m
+[32m+             m++[m
+[32m+         } while (m < deck.length && firstVal === deck[m])[m
+[32m+         counts.push(count)[m
+[32m+     }[m
+[32m+     if (Math.max(...counts) < 2) {[m
+[32m+         return false[m
+[32m+     } else {[m
+[32m+         for (let x = 2; x <= Math.max(...counts); x++) {[m
+[32m+             let k = 0[m
+[32m+             while (counts[k] % x === 0) {[m
+[32m+                 k++[m
+[32m+             }[m
+[32m+             if (k === counts.length) {[m
+[32m+                 return true[m
+[32m+             }[m
+[32m+         }[m
+[32m+         return false[m
+[32m+     }[m
+[32m+ };[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  export default hasGroupsSizeX[m
+[1mdiff --cc code/test.html[m
+[1mindex 011335c,f6c353a..0000000[m
+[1m--- a/code/test.html[m
+[1m+++ b/code/test.html[m
+[36m@@@ -1,22 -1,22 +1,46 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +<!DOCTYPE html>[m
+[32m +<html lang="en">[m
+[32m +[m
+[32m +<head>[m
+[32m +    <meta charset="UTF-8">[m
+[32m +    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m +    <title>Document</title>[m
+[32m +    <script type="text/javascript" src="./test.js">[m
+[32m +    </script>[m
+[32m +</head>[m
+[32m +[m
+[32m +<body>[m
+[32m +    <ul>[m
+[32m +        <li>选项1</li>[m
+[32m +        <li>选项2</li>[m
+[32m +        <li>选项3</li>[m
+[32m +        <li>选项4</li>[m
+[32m +        <li>选项5</li>[m
+[32m +    </ul>[m
+[32m +</body>[m
+[32m +[m
+[32m++=======[m
+[32m+ <!DOCTYPE html>[m
+[32m+ <html lang="en">[m
+[32m+ [m
+[32m+ <head>[m
+[32m+     <meta charset="UTF-8">[m
+[32m+     <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+     <title>Document</title>[m
+[32m+     <script type="text/javascript" src="./test.js">[m
+[32m+     </script>[m
+[32m+ </head>[m
+[32m+ [m
+[32m+ <body>[m
+[32m+     <ul>[m
+[32m+         <li>选项1</li>[m
+[32m+         <li>选项2</li>[m
+[32m+         <li>选项3</li>[m
+[32m+         <li>选项4</li>[m
+[32m+         <li>选项5</li>[m
+[32m+     </ul>[m
+[32m+ </body>[m
+[32m+ [m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  </html>[m
+[1mdiff --cc code/test.js[m
+[1mindex be2f008,8abdddd..0000000[m
+[1m--- a/code/test.js[m
+[1m+++ b/code/test.js[m
+[36m@@@ -1,10 -1,2 +1,15 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +var timeId;[m
+[32m +function start() {[m
+[32m +    var timeId = setInterval(function () {[m
+[32m +        console.log(new Date().toLocaleString());[m
+[32m +    }, 1000);[m
+[32m +}[m
+[32m +[m
+[32m +function stop() {[m
+[32m +    clearInterval(timeId)[m
+[31m- }[m
+[32m++}[m
+[32m++=======[m
+[32m+ [m
+[32m+ import { CreateList, PrintList, reverseList, ListNode } from './listNode/listNodeNoHead.js'[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+[1mdiff --cc package.json[m
+[1mindex 33a38b5,dbb9ba5..0000000[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@@ -1,15 -1,14 +1,28 @@@[m
+  {[m
+    "devDependencies": {[m
+[32m++<<<<<<< HEAD[m
+[32m +    "@babel/cli": "^7.24.8",[m
+[32m +    "@babel/core": "^7.4.5",[m
+[32m +    "@babel/preset-env": "^7.4.5",[m
+[32m +    "@eslint/js": "^9.7.0",[m
+[32m++=======[m
+[32m+     "@eslint/js": "^9.7.0",[m
+[32m+     "eslint": "^9.7.0",[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+      "eslint-plugin-vue": "^9.27.0",[m
+      "globals": "^15.8.0",[m
+      "jest": "^29.7.0",[m
+      "typescript-eslint": "^7.16.0"[m
+    },[m
+[32m++<<<<<<< HEAD[m
+[32m++  "scripts": {[m
+[32m++    "test": "jest"[m
+[32m++  }[m
+[32m++}[m
+[32m++=======[m
+[32m+   "type": "module",[m
+    "scripts": {[m
+      "test": "jest"[m
+    }[m
+[31m -}[m
+[32m +}[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+[1mdiff --cc sum.js[m
+[1mindex 9ce27fc,2b1dc1a..0000000[m
+[1m--- a/sum.js[m
+[1m+++ b/sum.js[m
+[36m@@@ -1,10 -1,10 +1,23 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +export default (str) => {[m
+[32m +    // 字符串按空格进行分隔，保存数组，数组的元素的先后顺序就是单词的顺序[m
+[32m +    let arr = str.split(' ')[m
+[32m +    // 对数组进行遍历，然后每个元素进行反转[m
+[32m +    let result = arr.map(item => {[m
+[32m +        return item.split('').reverse().join('')[m
+[32m +    })[m
+[32m +    return result.join(' ')[m
+[32m +}[m
+[32m +[m
+[32m++=======[m
+[32m+ export default (str) => {[m
+[32m+     // 字符串按空格进行分隔，保存数组，数组的元素的先后顺序就是单词的顺序[m
+[32m+     let arr = str.split(' ')[m
+[32m+     // 对数组进行遍历，然后每个元素进行反转[m
+[32m+     let result = arr.map(item => {[m
+[32m+         return item.split('').reverse().join('')[m
+[32m+     })[m
+[32m+     return result.join(' ')[m
+[32m+ }[m
+[32m+ [m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+[1mdiff --cc sum.test.js[m
+[1mindex cb7aa5a,04b9222..0000000[m
+[1m--- a/sum.test.js[m
+[1m+++ b/sum.test.js[m
+[36m@@@ -1,8 -1,8 +1,19 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +[m
+[32m +import revertByWorld from './sum'[m
+[32m +[m
+[32m +// 测试用例（test..expect..toBe 为固定写法）[m
+[32m +test('revertByWorld:Let\'s take LeetCode contest', () => {[m
+[32m +    expect(revertByWorld("Let's take LeetCode contest")).toBe("s'teL ekat edoCteeL tsetnoc")[m
+[32m +})[m
+[32m +[m
+[32m++=======[m
+[32m+ [m
+[32m+ import revertByWorld from './sum'[m
+[32m+ [m
+[32m+ // 测试用例（test..expect..toBe 为固定写法）[m
+[32m+ test('revertByWorld:Let\'s take LeetCode contest', () => {[m
+[32m+     expect(revertByWorld("Let's take LeetCode contest")).toBe("s'teL ekat edoCteeL tsetnoc")[m
+[32m+ })[m
+[32m+ [m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+[1mdiff --cc test/10.test.js[m
+[1mindex 1b427e5,870c838..0000000[m
+[1m--- a/test/10.test.js[m
+[1m+++ b/test/10.test.js[m
+[36m@@@ -1,6 -1,6 +1,14 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +/* eslint-disable no-undef */[m
+[32m +import isMatch from "../code/10"[m
+[32m +[m
+[32m +test('10', () => {[m
+[32m +    expect(isMatch('aa', 'a*')).toBe(true)[m
+[32m++=======[m
+[32m+ /* eslint-disable no-undef */[m
+[32m+ import isMatch from "../code/10"[m
+[32m+ [m
+[32m+ test('10', () => {[m
+[32m+     expect(isMatch('aa', 'a*')).toBe(true)[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  })[m
+[1mdiff --cc test/17.test.js[m
+[1mindex 86f8e0f,aa3cda0..0000000[m
+[1m--- a/test/17.test.js[m
+[1m+++ b/test/17.test.js[m
+[36m@@@ -1,8 -1,8 +1,18 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +/* eslint-disable no-undef */[m
+[32m +[m
+[32m +import countBinerySubstrings from '../code/17'[m
+[32m +[m
+[32m +test('revertByWorld:Let\'s take LeetCode contest', () => {[m
+[32m +    expect(countBinerySubstrings("23")).toEqual(["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"])[m
+[32m +    //使用toEqual用来比较复杂数据类型[m
+[32m++=======[m
+[32m+ /* eslint-disable no-undef */[m
+[32m+ [m
+[32m+ import countBinerySubstrings from '../code/17'[m
+[32m+ [m
+[32m+ test('revertByWorld:Let\'s take LeetCode contest', () => {[m
+[32m+     expect(countBinerySubstrings("23")).toEqual(["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"])[m
+[32m+     //使用toEqual用来比较复杂数据类型[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  })[m
+[1mdiff --cc test/459.test.js[m
+[1mindex 670de20,bbd1a09..0000000[m
+[1m--- a/test/459.test.js[m
+[1m+++ b/test/459.test.js[m
+[36m@@@ -1,5 -1,5 +1,12 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +/* eslint-disable no-undef */[m
+[32m +import repeatedSubstringPattern from "../code/459";[m
+[32m +test('459', () => {[m
+[32m +    expect(repeatedSubstringPattern("abab")).toBe(true)[m
+[32m++=======[m
+[32m+ /* eslint-disable no-undef */[m
+[32m+ import repeatedSubstringPattern from "../code/459";[m
+[32m+ test('459', () => {[m
+[32m+     expect(repeatedSubstringPattern("abab")).toBe(true)[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  })[m
+[1mdiff --cc test/696.test.js[m
+[1mindex 174155f,1858b68..0000000[m
+[1m--- a/test/696.test.js[m
+[1m+++ b/test/696.test.js[m
+[36m@@@ -1,9 -1,9 +1,21 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +/* eslint-disable no-undef */[m
+[32m +[m
+[32m +import countBinerySubstrings from '../code/696'[m
+[32m +[m
+[32m +// 测试用例（test..expect..toBe 为固定写法）[m
+[32m +test('revertByWorld:Let\'s take LeetCode contest', () => {[m
+[32m +    expect(countBinerySubstrings("00110011")).toBe(6)[m
+[32m +})[m
+[32m +[m
+[32m++=======[m
+[32m+ /* eslint-disable no-undef */[m
+[32m+ [m
+[32m+ import countBinerySubstrings from '../code/696'[m
+[32m+ [m
+[32m+ // 测试用例（test..expect..toBe 为固定写法）[m
+[32m+ test('revertByWorld:Let\'s take LeetCode contest', () => {[m
+[32m+     expect(countBinerySubstrings("00110011")).toBe(6)[m
+[32m+ })[m
+[32m+ [m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+[1mdiff --cc test/914.test.js[m
+[1mindex 48d22aa,9e440d6..0000000[m
+[1m--- a/test/914.test.js[m
+[1m+++ b/test/914.test.js[m
+[36m@@@ -1,6 -1,6 +1,14 @@@[m
+[32m++<<<<<<< HEAD[m
+[32m +/* eslint-disable no-undef */[m
+[32m +import hasGroupsSizeX from '../code/914'[m
+[32m +[m
+[32m +test('test914', () => {[m
+[32m +    expect(hasGroupsSizeX([0, 0, 0, 1, 1, 1, 2, 2, 2])).toBe(true)[m
+[32m++=======[m
+[32m+ /* eslint-disable no-undef */[m
+[32m+ import hasGroupsSizeX from '../code/914'[m
+[32m+ [m
+[32m+ test('test914', () => {[m
+[32m+     expect(hasGroupsSizeX([0, 0, 0, 1, 1, 1, 2, 2, 2])).toBe(true)[m
+[32m++>>>>>>> 6c3f76a (hot100的提交)[m
+  })[m

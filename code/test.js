@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var timeId;
 function start() {
     var timeId = setInterval(function () {
@@ -8,3 +9,7 @@ function start() {
 function stop() {
     clearInterval(timeId)
 }
+=======
+
+import { CreateList, PrintList, reverseList, ListNode } from './listNode/listNodeNoHead.js'
+>>>>>>> 6c3f76a (hot100的提交)

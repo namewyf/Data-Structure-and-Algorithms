@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "presets": [
         [
@@ -9,4 +10,17 @@
             }
         ]
     ]
+=======
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ]
+    ]
+>>>>>>> 6c3f76a (hot100的提交)
 }
