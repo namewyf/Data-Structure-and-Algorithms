@@ -37,7 +37,7 @@ var reverseList = function (head) {
     return newList;
 };
 
-export default {
+export {
     PrintList,
     CreateList,
     ListNode,
